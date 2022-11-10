@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <style>
+        .dropdown {
+            width: 80px;
+            height: 40px;
+            background-color: #be371f;
+            color: white;
+        }
+
+        .header,
+        form {
+            display: flex;
+            border: 1px solid black;
+        }
+
+        form {
+            width: 100%;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .item-form {
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .item-form label {
+            font-size: 20px;
+            padding: 5px;
+            padding-left: 0%;
+        }
+
+        .item-form input {
+            border-radius: 25px;
+            height: 30px;
+            margin: 5px;
+            margin-left: 0;
+            padding: 5px;
+        }
+
+        .submitBtn {
+            padding: 16px;
+            background-color: #be371f;
+            color: white;
+            border-color: #f1f1f1
+        }
+
+        .column-heading {
+            height: 100px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #5a550b;
+            color: white;
+        }
+
+        .column-heading div {
+            width: 30%;
+            border-right: 1px solid white;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #end_heading {
+            border-right: none;
+        }
+
+        .remaining_rows_data {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100px;
+            border-bottom: 1px solid black;
+        }
+
+        .form_clear {
+            width: 20%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="header">
+        <form action="/submit" method="post">
+            <div class="item-form">
+                <label>Task</label>
+                <input type="text" id="task" name="task" />
+            </div>
+            <div class="item-form">
+                <label>Email</label>
+                <input type="email" name="email" />
+            </div>
+            <select name="priority" class="dropdown">
+                <option id="Low" name="low">Low</option>
+                <option id="Medium" name="Medium">Medium</option>
+                <option id="High" name="High">High</option>
+            </select>
+            <button type="submit" class="submitBtn">Add To Do Item</button>
+
+        </form>
+        <form class="form_clear" action="/clear" method="post">
+            <button type="clear" class="submitBtn">Clear</button>
+        </form>
+
+
+    </div>
+    <div class="column-heading">
+        <div>
+            <h1>Task</h1>
+        </div>
+        <div>
+            <h1>Email</h1>
+        </div>
+        <div id="end_heading">
+            <h1>Priority</h1>
+        </div>
+    </div>
+    {% for todo in todo_list %}
+    <div class="remaining_rows_data">
+        <p class=" ui big header">{{todo.task}} </p>
+
+        <p class="ui big header">{{todo.email}} </p>
+        <p class="ui big header">{{todo.priority}} </p>
+
+    </div>
+    {% endfor %}
+</body>
+
+</html>
